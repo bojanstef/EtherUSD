@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const port = process.env.PORT || 8080;
 
 const schedule = require('node-schedule');
 
@@ -30,7 +31,7 @@ app.get('/', function (req, res) {
 	});
 });
 
-app.listen(3000, function () {
+app.listen(port, function () {
   console.log('EtherUSD listening on port 3000!');
 });
 
