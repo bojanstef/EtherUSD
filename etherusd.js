@@ -19,7 +19,7 @@ const twitter_client = new Twitter({
 });
 
 app.get('/', function (req, res) {
-	const job = schedule.scheduleJob('*/1 * * * *', function() {
+	const job = schedule.scheduleJob('*/10 * * * *', function() {
 		coinbase_client.getExchangeRates({'currency': 'ETH'}, function(err, rates) {
 			const exchange = rates['data']['rates']['USD'];
 			const tweet_text = "ETH: $" + exchange;
@@ -32,6 +32,6 @@ app.get('/', function (req, res) {
 });
 
 app.listen(port, function () {
-  console.log('EtherUSD listening on port 3000!');
+  console.log('EtherUSD listening on port' + port + '!');
 });
 
