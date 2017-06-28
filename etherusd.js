@@ -18,7 +18,7 @@ const twitter_client = new Twitter({
 	access_token_secret: 'YeJRKN9FPJDjbBJM5j5QZSxw73ivCLETJzlqsiwle7wlc'
 });
 
-app.get('/', function (req, res) {
+app.listen(port, function () {
 	const job = schedule.scheduleJob('*/10 * * * *', function() {
 		coinbase_client.getExchangeRates({'currency': 'ETH'}, function(err, rates) {
 			const exchange = rates['data']['rates']['USD'];
@@ -29,9 +29,5 @@ app.get('/', function (req, res) {
 			});
 		});
 	});
-});
-
-app.listen(port, function () {
-  console.log('EtherUSD listening on port' + port + '!');
 });
 
