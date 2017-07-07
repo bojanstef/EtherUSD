@@ -19,7 +19,7 @@ const twitter_client = new Twitter({
 });
 
 app.listen(port, function () {
-	const job = schedule.scheduleJob('*/10 * * * *', function() {
+	const job = schedule.scheduleJob('*/20 * * * *', function() {
 		coinbase_client.getExchangeRates({'currency': 'ETH'}, function(err, rates) {
 			const exchange = rates['data']['rates']['USD'];
 			const tweet_text = "ETH: $" + exchange;
