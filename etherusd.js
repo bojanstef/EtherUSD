@@ -3,13 +3,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 const schedule = require('node-schedule');
-
-const Coinbase = require('coinbase').Client;
-const coinbase_client = new Coinbase({
-	'apiKey': 'YPa0WtPxisDx6ScT',
-	'apiSecret': 'hlpnSYpvlrOMyNoZkNe6ryG9kNk4WdsA'
-});
-
+const request = require('request');
 const Twitter = require('twitter');
 const twitter_client = new Twitter({
 	consumer_key: 'vdmrnHiiq4GI1DIwauSJHdQkj',
@@ -19,15 +13,14 @@ const twitter_client = new Twitter({
 });
 
 app.listen(port, function () {
-	const job = schedule.scheduleJob('*/20 * * * *', function() {
-		coinbase_client.getExchangeRates({'currency': 'ETH'}, function(err, rates) {
-			const exchange = rates['data']['rates']['USD'];
-			const tweet_text = "ETH: $" + exchange;
-
-			twitter_client.post('statuses/update', {status: tweet_text}, function(error, tweet, response) {
-		  		if (!error) console.log();
-			});
-		});
+    const job = schedule.scheduleJob('*/20 * * * *', function() {
+        request.get('https://api.coinmarketcap.com/v1/ticker/ethereum/', function(err, res, body) {
+            const json = JSON.parse(body);
+            const price = json[0].price_usd;
+            const tweet_text = '$ETH :' + price + 'USD';
+            twitter_client.post('statuses/update', {status: tweet_text}, function(error, tweet, response) {
+            	if (!error) console.log();
+            })
+        })
 	});
 });
-
