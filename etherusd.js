@@ -19,7 +19,7 @@ app.listen(port, function () {
             const price = json[0].price_usd;
             const tweet_text = '$ETH :' + price + 'USD';
             twitter_client.post('statuses/update', {status: tweet_text}, function(error, tweet, response) {
-            	if (!error) console.log();
+            	if (!error) console.log(error);
             })
         })
 	});
