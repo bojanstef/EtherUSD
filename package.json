@@ -1,0 +1,21 @@
+{
+  "name": "etherusd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "etherusd.js",
+  "scripts": {
+    "start": "node etherusd.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "node": "^9.4.0",
+    "node-schedule": "^1.2.3",
+    "request": "^2.83.0",
+    "twitter": "^1.7.1"
+  },
+  "engines": {
+    "node": "8.1.2"
+  }
+}
