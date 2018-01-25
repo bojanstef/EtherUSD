@@ -12,6 +12,7 @@
     "express": "^4.16.2",
     "node": "^9.4.0",
     "node-schedule": "^1.2.3",
+    "numeral": "^2.0.6",
     "request": "^2.83.0",
     "twitter": "^1.7.1"
   },

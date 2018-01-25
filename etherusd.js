@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 8080;
-
+const numeral = require('numeral');
 const schedule = require('node-schedule');
 const request = require('request');
 const Twitter = require('twitter');
@@ -17,7 +17,8 @@ app.listen(port, function () {
         request.get('https://api.coinmarketcap.com/v1/ticker/ethereum/', function(err, res, body) {
             const json = JSON.parse(body);
             const price = json[0].price_usd;
-            const tweet_text = '$ETH :' + ' $ ' + price + ' USD';
+			const formattedPrice = numeral(price).format('$0,0');
+            const tweet_text = '$ETH: ' + formattedPrice + ' USD';
             twitter_client.post('statuses/update', {status: tweet_text}, function(error, tweet, response) {
             	if (!error) console.log(error);
             })
