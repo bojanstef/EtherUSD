@@ -12,7 +12,7 @@ const twitter_client = new Twitter({
 	access_token_secret: 'YeJRKN9FPJDjbBJM5j5QZSxw73ivCLETJzlqsiwle7wlc'
 });
 
-const stream = twitter_client.stream('statuses/filter', {track:'ethereum, vitalik, ether'});
+const stream = twitter_client.stream('statuses/filter', {track:'ethereum, vitalik'});
 stream.on('data', (event) => {
     twitter_client.post('favorites/create', {id:event.id_str}, (error, response) => {
         if(error) throw error;
