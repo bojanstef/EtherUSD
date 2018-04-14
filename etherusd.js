@@ -15,8 +15,11 @@ const twitter_client = new Twitter({
 const stream = twitter_client.stream('statuses/filter', {track:'ethereum, vitalik'});
 stream.on('data', (event) => {
     twitter_client.post('favorites/create', {id:event.id_str}, (error, response) => {
-        if(error) throw error;
-        console.log(`Like tweet with ID: ${response.id_str} - ${response.text}`);
+        if (error) {
+            console.log(error);
+        } else {
+            console.log(`Like tweet with ID: ${response.id_str} - ${response.text}`);
+        }
     });
 });
 stream.on("error", error => console.error(error));
@@ -29,7 +32,7 @@ app.listen(port, function () {
 			const formattedPrice = numeral(price).format('$0,0');
             const tweet_text = '$ETH: ' + formattedPrice + ' USD';
             twitter_client.post('statuses/update', {status: tweet_text}, function(error, tweet, response) {
-            	if (!error) console.log(error);
+            	if (error) console.log(error);
             })
         })
 	});
