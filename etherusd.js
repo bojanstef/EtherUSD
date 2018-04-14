@@ -14,7 +14,7 @@ const twitter_client = new Twitter({
 
 const stream = twitter_client.stream('statuses/filter', {track:'ethereum, vitalik, ether'});
 stream.on('data', (event) => {
-    client.post('favorites/create', {id:event.id_str}, (error, response) => {
+    twitter_client.post('favorites/create', {id:event.id_str}, (error, response) => {
         if(error) throw error;
         console.log(`Like tweet with ID: ${response.id_str} - ${response.text}`);
     });
