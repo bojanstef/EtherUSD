@@ -12,7 +12,7 @@ const twitter_client = new Twitter({
 	access_token_secret: '4oteM7QdydFaEbvcw8vGz1XZqk4cTkrK2sztI0Dbg8wvn'
 });
 
-const stream = twitter_client.stream('statuses/filter', {track:'ethereum, vitalik'});
+/*const stream = twitter_client.stream('statuses/filter', {track:'ethereum, vitalik'});
 stream.on('data', (event) => {
     twitter_client.post('favorites/create', {id:event.id_str}, (error, response) => {
         if (error) {
@@ -22,7 +22,7 @@ stream.on('data', (event) => {
         }
     });
 });
-stream.on("error", error => console.error(error));
+stream.on("error", error => console.error(error));*/
 
 app.listen(port, function () {
     const job = schedule.scheduleJob('*/20 * * * *', function() {
@@ -35,5 +35,5 @@ app.listen(port, function () {
             	if (error) console.log(error);
             })
         })
-	});
+    });
 });
