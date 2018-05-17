@@ -6,10 +6,10 @@ const schedule = require('node-schedule');
 const request = require('request');
 const Twitter = require('twitter');
 const twitter_client = new Twitter({
-	consumer_key: 'vdmrnHiiq4GI1DIwauSJHdQkj',
-	consumer_secret: 'gFF3C6yWpkcCI5kovk74fFBXa6V2naIYdTdMHZwkQL8bUdtKnb',
-	access_token_key: '879561476121411584-2s7EE8JkTngX4K8kzFo0EKiC06fE4Ky',
-	access_token_secret: 'YeJRKN9FPJDjbBJM5j5QZSxw73ivCLETJzlqsiwle7wlc'
+	consumer_key: 'wsb1tZGo2NXLth2AMEW4bF1gg',
+	consumer_secret: 'LlbQ6BVmlvfB0EYjX3xqRhwgIXzZxZMeC7G1VGTK8OEnYWq4Uk',
+	access_token_key: '879561476121411584-7TmVIL7QsrksXke1KwwN4hQAcKcZHBB',
+	access_token_secret: '4oteM7QdydFaEbvcw8vGz1XZqk4cTkrK2sztI0Dbg8wvn'
 });
 
 const stream = twitter_client.stream('statuses/filter', {track:'ethereum, vitalik'});
